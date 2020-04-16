@@ -1,5 +1,6 @@
-var webpack = require('webpack');
-var path = require('path')
+const webpack = require('webpack');
+const path = require('path')
+// const URLImportPlugin = require("webpack-external-import/webpack")
 
 module.exports = {
 	mode: 'development',
@@ -8,12 +9,12 @@ module.exports = {
   },
   output: {
     filename: 'vendor.bundle.js',
-    path: path.resolve('build/'),
+    path: path.resolve('dist/'),
     library: 'vendor_lib',
 		libraryTarget: "window"
   },
   plugins: [new webpack.DllPlugin({
     name: 'vendor_lib',
-    path: 'build/vendor-manifest.json',
+    path: 'dist/vendor-manifest.json',
   })]
 };

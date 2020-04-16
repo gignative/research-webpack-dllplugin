@@ -1,1 +1,1 @@
-module.exports = 2048;
+export default 2048

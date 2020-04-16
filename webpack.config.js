@@ -1,21 +1,39 @@
 var webpack = require('webpack');
 var path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
   entry: {
-    main: ['./main'],
+    main: ['./main']
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    },
   },
   output: {
-    filename: 'main.bundle.js',
-    path: path.resolve('build/'),
+    filename: '[name]_[contenthash].bundle.js',
+    path: path.resolve('dist/')
   },
   plugins: [
+    // new CleanWebpackPlugin(),
     new webpack.DllReferencePlugin({
-      // context: '.',
       scope: 'xxx',
-      manifest: require('./build/vendor-manifest.json'),
+      manifest: require('./dist/vendor-manifest.json'),
+    }),
+    new webpack.DllReferencePlugin({
+      scope: 'yyy',
+      manifest: require('./dist/vendor-lodash-manifest.json'),
+    }),
+    new webpack.DllReferencePlugin({
+      scope: 'zzz',
+      manifest: require('./dist/vendor-lodash2-manifest.json'),
+    }),
+    new webpack.DllReferencePlugin({
+      scope: 'monaco',
+      manifest: require('./dist/vendor-monaco-manifest.json'),
     }),
     new HtmlWebpackPlugin({
       template: './index.html'
