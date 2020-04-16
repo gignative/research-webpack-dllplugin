@@ -8,8 +8,8 @@ module.exports = {
     vendor: ['./vendor'],
   },
   output: {
-    filename: 'vendor.bundle.js',
-    path: path.resolve('dll_dist/'),
+    filename: 'vendor.dll.js',
+    path: path.resolve('dll/vendor/'),
     library: 'vendor_lib',
 		libraryTarget: "window"
   },
@@ -17,7 +17,7 @@ module.exports = {
     // new CleanWebpackPlugin(),
     new webpack.DllPlugin({
       name: 'vendor_lib',
-      path: 'dll_dist/vendor-manifest.json',
+      path: 'dll/vendor/manifest.json',
     })
   ]
 };

@@ -13,26 +13,25 @@ module.exports = {
 	mode: 'development',
   entry: {
     // vendor: [path.resolve(__dirname, 'vendor_monaco')],
-    vendor: ['./vendor_monaco'],
+    vendor: ['./monaco'],
   },
   // optimization: {
   //   minimize: true,
   //   minimizer: [new TerserPlugin()]
   // },
   output: {
-    filename: 'vendor_monaco.bundle.js',
-    // path: path.resolve(cwd, 'dist/'),
-    path: path.resolve(__dirname, '../dist/'),
+    filename: 'monaco.dll.js',
+    // path: path.resolve(cwd, 'dll/monaco/'),
+    path: path.resolve(__dirname, '../dll/monaco/'),
     library: 'vendor_monaco_lib',
 		libraryTarget: "window",
-    publicPath: 'dist/'
+    publicPath: 'dll/monaco/'
   },
   plugins: [
     // new CleanWebpackPlugin(),
     new webpack.DllPlugin({
       name: 'vendor_monaco_lib',
-      // path: path.resolve(cwd, 'dist/vendor-monaco-manifest.json'),
-      path: path.resolve(__dirname, '../dist/vendor-monaco-manifest.json'),
+      path: path.resolve(__dirname, '../dll/monaco/manifest.json'),
     }),
     new MonacoWebpackPlugin({
       filename: '[name].worker.[contenthash].js',

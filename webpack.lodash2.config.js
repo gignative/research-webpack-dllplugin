@@ -8,8 +8,8 @@ module.exports = {
     vendor: ['lodash'],
   },
   output: {
-    filename: 'vendor_lodash2.bundle.js',
-    path: path.resolve('dll_dist/'),
+    filename: 'lodash2.dll.js',
+    path: path.resolve('dll/lodash2/'),
     library: 'vendor_lodash2_lib',
 		libraryTarget: "window"
   },
@@ -18,7 +18,7 @@ module.exports = {
     new webpack.DllPlugin({
       context: 'node_modules',
       name: 'vendor_lodash2_lib',
-      path: 'dll_dist/vendor-lodash2-manifest.json',
+      path: 'dll/lodash2/manifest.json',
     })
   ]
 };
