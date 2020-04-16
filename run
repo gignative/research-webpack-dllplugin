@@ -1,3 +1,7 @@
 #!/bin/bash
 
-npx webpack-dev-server
+#npx webpack-dev-server
+cd dist
+ln -s ../dll_dist
+ln -s ../dist .
+http-server

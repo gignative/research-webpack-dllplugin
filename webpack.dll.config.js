@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path')
-// const URLImportPlugin = require("webpack-external-import/webpack")
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
 	mode: 'development',
@@ -9,12 +9,15 @@ module.exports = {
   },
   output: {
     filename: 'vendor.bundle.js',
-    path: path.resolve('dist/'),
+    path: path.resolve('dll_dist/'),
     library: 'vendor_lib',
 		libraryTarget: "window"
   },
-  plugins: [new webpack.DllPlugin({
-    name: 'vendor_lib',
-    path: 'dist/vendor-manifest.json',
-  })]
+  plugins: [
+    // new CleanWebpackPlugin(),
+    new webpack.DllPlugin({
+      name: 'vendor_lib',
+      path: 'dll_dist/vendor-manifest.json',
+    })
+  ]
 };

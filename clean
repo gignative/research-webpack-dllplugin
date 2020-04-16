@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -rf dist >/dev/null 2>&1 || true
+rm -rf dist dll_dist >/dev/null 2>&1 || true

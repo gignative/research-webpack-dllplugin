@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const path = require('path')
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 // const cwd = process.cwd()
 
@@ -13,12 +15,17 @@ module.exports = {
     // vendor: [path.resolve(__dirname, 'vendor_monaco')],
     vendor: ['./vendor_monaco'],
   },
+  // optimization: {
+  //   minimize: true,
+  //   minimizer: [new TerserPlugin()]
+  // },
   output: {
     filename: 'vendor_monaco.bundle.js',
     // path: path.resolve(cwd, 'dist/'),
     path: path.resolve(__dirname, '../dist/'),
     library: 'vendor_monaco_lib',
-		libraryTarget: "window"
+		libraryTarget: "window",
+    publicPath: 'dist/'
   },
   plugins: [
     // new CleanWebpackPlugin(),
@@ -28,6 +35,7 @@ module.exports = {
       path: path.resolve(__dirname, '../dist/vendor-monaco-manifest.json'),
     }),
     new MonacoWebpackPlugin({
+      filename: '[name].worker.[contenthash].js',
 			languages: ["typescript", "javascript", "css"],
 		})
   ],

@@ -1,5 +1,6 @@
-var webpack = require('webpack');
-var path = require('path')
+const webpack = require('webpack');
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
 	mode: 'development',
@@ -8,12 +9,15 @@ module.exports = {
   },
   output: {
     filename: 'vendor_lodash.bundle.js',
-    path: path.resolve('dist/'),
+    path: path.resolve('dll_dist/'),
     library: 'vendor_lodash_lib',
 		libraryTarget: "window"
   },
-  plugins: [new webpack.DllPlugin({
-    name: 'vendor_lodash_lib',
-    path: 'dist/vendor-lodash-manifest.json',
-  })]
+  plugins: [
+    // new CleanWebpackPlugin(),
+    new webpack.DllPlugin({
+      name: 'vendor_lodash_lib',
+      path: 'dll_dist/vendor-lodash-manifest.json',
+    })
+  ]
 };

@@ -1,5 +1,5 @@
-var webpack = require('webpack');
-var path = require('path')
+const webpack = require('webpack');
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
@@ -21,15 +21,15 @@ module.exports = {
     // new CleanWebpackPlugin(),
     new webpack.DllReferencePlugin({
       scope: 'xxx',
-      manifest: require('./dist/vendor-manifest.json'),
+      manifest: require('./dll_dist/vendor-manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       scope: 'yyy',
-      manifest: require('./dist/vendor-lodash-manifest.json'),
+      manifest: require('./dll_dist/vendor-lodash-manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       scope: 'zzz',
-      manifest: require('./dist/vendor-lodash2-manifest.json'),
+      manifest: require('./dll_dist/vendor-lodash2-manifest.json'),
     }),
     new webpack.DllReferencePlugin({
       scope: 'monaco',
