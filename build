@@ -7,4 +7,7 @@ npx webpack --config webpack.lodash2.config.js
 cd big_lib
 npx webpack --config webpack.monaco.config.js
 cd -
+cd big_lib2
+npx webpack --config webpack.d3.config.js
+cd -
 npx webpack

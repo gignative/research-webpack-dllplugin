@@ -18,7 +18,10 @@ module.exports = {
     path: path.resolve('dist/')
   },
   plugins: [
-    // new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      MONACO_DLL_PATH: JSON.stringify(require('./dll/monaco/file_manifest.json')['monaco.js'])
+    }),
     new webpack.DllReferencePlugin({
       scope: 'xxx',
       manifest: require('./dll/vendor/manifest.json'),
@@ -34,6 +37,10 @@ module.exports = {
     new webpack.DllReferencePlugin({
       scope: 'monaco',
       manifest: require('./dll/monaco/manifest.json'),
+    }),
+    new webpack.DllReferencePlugin({
+      scope: 'd3',
+      manifest: require('./dll/d3/manifest.json'),
     }),
     new HtmlWebpackPlugin({
       template: './index.html'
